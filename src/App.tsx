@@ -1,16 +1,41 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-function App() {
-  return (
-    <>
-      <div className="navbar"></div>
-      <main>
+import { Switch, Route } from 'react-router-dom'
+import { Layout } from 'antd'
 
-      </main>
-      <footer>
+import { Navbar, HomePage, Exchanges, Cryptocurrencies, CryptoDetails, News, Footer } from './components'
+import './App.css'
 
-      </footer>
-    </>
-  );
-}
+const App = () => (
+  <div className="app">
+    <div className="navbar">
+      <Navbar />
+    </div>
+    <div className="main">
+      <Layout>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/exchanges">
+            <Exchanges />
+          </Route>
+          <Route exact path="/cryptocurrencies">
+            <Cryptocurrencies />
+          </Route>
+          <Route exact path="/crypto/:coinId">
+            <CryptoDetails />
+          </Route>
+          <Route exact path="/news">
+            <News />
+          </Route>
+        </Switch>
+      </Layout>
+      <div className="footer">
+        <Footer />
+      </div>
+    </div>
+  </div>
+);
 
 export default App;
