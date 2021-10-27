@@ -16,6 +16,7 @@ const Cryptocurrencies: React.FC<ISimplifedComp> = ({ simplified }) => {
 
   useEffect(() => {
     const filterCryptos = cryptosList?.data?.coins.filter((coin: Cryptos) => coin.name.toLowerCase().includes(searchTerm.toLowerCase().trim()))
+
     setCrypto(filterCryptos)
   }, [cryptosList, searchTerm])
 
