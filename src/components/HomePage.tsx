@@ -5,14 +5,14 @@ import { Typography, Row, Col, Statistic } from 'antd'
 import { Link } from 'react-router-dom'
 
 import { useGetCryptosQuery } from '../services/cryptoApi'
-import { coinStats } from '../typescript/api.types'
+import { ICoinStats } from '../typescript/api.types'
 import { Cryptocurrencies, News } from '.'
 
 const { Title } = Typography
 
 const HomePage = () => {
   const { data, isLoading } = useGetCryptosQuery(10);
-  const globalStats: coinStats = data?.data?.stats
+  const globalStats: ICoinStats = data?.data?.stats
 
   if (isLoading) return <p>loading..</p>
 

@@ -11,16 +11,8 @@ import { Cryptos } from '../typescript/types'
 const Cryptocurrencies: React.FC<ISimplifedComp> = ({ simplified }) => {
   const count = simplified ? 10 : 100;
   const { data: cryptosList, isLoading } = useGetCryptosQuery(count)
-  const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('')
   const [cryptos, setCrypto] = useState<Cryptos[]>([])
-
-  // useEffect(() => {
-  //   if (cryptosList?.data?.coins?.length > 1) {
-  //     setCrypto(cryptosList?.data?.coins)
-  //     setLoading(false)
-  //   }
-  // }, [cryptosList])
 
   useEffect(() => {
     const filterCryptos = cryptosList?.data?.coins.filter((coin: Cryptos) => coin.name.toLowerCase().includes(searchTerm.toLowerCase().trim()))
