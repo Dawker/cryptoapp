@@ -1,6 +1,7 @@
 import React from 'react'
+import { ISimplifedComp } from '../typescript/components.types'
 
-const News = () => {
+const News: React.FC<ISimplifedComp> = ({ simplified }) => {
   return (
     <div>
 

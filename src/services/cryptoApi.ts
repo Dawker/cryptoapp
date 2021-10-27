@@ -1,5 +1,4 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react';
-import { coinStats } from '../typescript/api.types';
 
 const cryptoApiHeaders = {
   'x-rapidapi-host': 'coinranking1.p.rapidapi.com',
@@ -13,8 +12,8 @@ export const cryptoApi = createApi({
   reducerPath:'cryptoApi',
   baseQuery:fetchBaseQuery({baseUrl}),
   endpoints:(builder)=>({
-    getCryptos: builder.query<coinStats,number>({
-      query: (count) => createRequest(`/coins?limit=${count}`),
+    getCryptos: builder.query({
+      query: (count) => createRequest(`/coins?limit=${count!}`),
     }),
   })
 })
