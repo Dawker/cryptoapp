@@ -3,7 +3,7 @@
 import { Switch, Route } from 'react-router-dom'
 import { Layout } from 'antd'
 
-import { Navbar, HomePage, Exchanges, Cryptocurrencies, CryptoDetails, News, Footer } from './components'
+import { Navbar, HomePage, Exchanges, Cryptocurrencies, CryptoDetails, News, Footer, VirtualPortofolio } from './components'
 import './App.css'
 
 const App = () => (
@@ -29,11 +29,14 @@ const App = () => (
           <Route exact path="/news">
             <News />
           </Route>
+          <Route exact path="/virtualportofolio">
+            <VirtualPortofolio />
+          </Route>
         </Switch>
       </Layout>
-      <div className="footer">
+      {/* <div className="footer">
         <Footer />
-      </div>
+      </div> */}
     </div>
   </div>
 );
