@@ -24,7 +24,7 @@ a:hover {
 
 .navbar {
   flex: 0.2;
-  background-color: rgb(0, 21, 41);
+  background-color: rgb(0 43 84);
 }
 
 .main {
@@ -40,11 +40,24 @@ a:hover {
   margin: 10px;
   height: 100vh;
   margin: 0px;
-  background-color: rgb(0, 21, 41);
+  background-color: rgb(0 43 84);
+}
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.65) !important;
+  background-color: rgb(0 43 84) !important;
+}
+
+.ant-menu-dark .ant-menu-item,
+.ant-menu-dark .ant-menu-item-group-title,
+.ant-menu-dark .ant-menu-item > a,
+.ant-menu-dark .ant-menu-item > span > a {
+  color: rgb(191 191 191);
 }
 
 .logo-container {
-  background-color: #001529;
+  background-color: rgb(0 43 84);
   display: flex;
   padding: 20px;
   align-items: center;
@@ -53,9 +66,21 @@ a:hover {
 .logo {
   margin: 0 0 0 15px;
 }
-.logo a {
-  color: white;
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: rgb(0 43 84);
 }
+
+a.ant-typography,
+.ant-typography a {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.ant-menu-dark .ant-menu-item-selected .ant-menu-item-icon,
+.ant-menu-dark .ant-menu-item-selected .anticon:active {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
 .menu-control-container {
   display: none !important;
   position: absolute !important;
@@ -69,6 +94,10 @@ a:hover {
 
 .menu-control-container .menu-icon {
   height: 5px !important;
+}
+
+.news-image {
+  object-fit: contain;
 }
 
 .loader {
@@ -369,8 +398,7 @@ a:hover {
   flex-grow: 1 !important;
 }
 .crypto-card .crypto-image {
-  width: 35px;
-  max-height: 26px;
+  height: 35px;
 }
 .select-timeperiod {
   width: 200px !important;

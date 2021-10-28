@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <>
-      <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2021
+      <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
         <Link to="/">
-          Cryptoverse Inc.
+          CryptoApp Inc.
         </Link> <br />
-        All Rights Reserved.
       </Typography.Title>
       <Space>
         <Link to="/">Home</Link>

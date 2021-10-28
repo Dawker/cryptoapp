@@ -31,7 +31,7 @@ const Navbar = () => {
     <div className="nav-container">
       <div className="logo-container">
         <Avatar src={icon} size="large" />
-        <Typography.Title level={2} className="logo"><Link to="/">Cryptoverse</Link></Typography.Title>
+        <Typography.Title style={{ color: 'rgba(255, 255, 255, 0.65)' }} level={2} className="logo"><Link to="/">Crypto App</Link></Typography.Title>
         <Button className="menu-control-container" onClick={() => setActiveMenu(!activeMenu)}><MenuOutlined className="menu-icon" style={{ marginBottom: 20 }} /></Button>
       </div>
       {activeMenu && (

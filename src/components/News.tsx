@@ -21,15 +21,8 @@ const News: React.FC<ISimplifedComp> = ({ simplified }) => {
   const count = simplified ? 6 : 12
   const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
   const [news, setNews] = useState([]);
+  const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({ newsCategory, count })
 
-  // const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({ newsCategory, count })
-  useEffect(() => {
-    const data = localStorage.getItem('newsCache')
-    if (data !== null) {
-      const sliced = JSON.parse(data)
-      setNews(sliced.slice(0, 12))
-    }
-  }, []);
 
   function handleChange(value: string) {
     if (!coinNames.includes(value)) return;
@@ -37,12 +30,14 @@ const News: React.FC<ISimplifedComp> = ({ simplified }) => {
     setNewsCategory(value)
   }
 
-  // useEffect(() => {
-  //   return;
-  //   setNews(cryptoNews.value)
-  // }, [newsCategory, cryptoNews])
+  useEffect(() => {
+    if (!isFetching) {
 
-  // if (isFetching) return <Loader />
+      setNews(cryptoNews.value)
+    }
+  }, [newsCategory, cryptoNews, isFetching])
+
+  if (isFetching) return <Loader />
   return (
     <Row gutter={[24, 24]}>
       {!simplified && (
@@ -67,7 +62,7 @@ const News: React.FC<ISimplifedComp> = ({ simplified }) => {
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
                 <Title className="news-title" level={4}>{news.name}</Title>
-                <img src={news?.image?.thumbnail?.contentUrl || demoImage} alt="" />
+                <img className='news-image' src={news?.image?.thumbnail?.contentUrl || demoImage} alt="" />
               </div>
               <p>{news.description.length > 100 ? `${news.description.substring(0, 100)}...` : news.description}</p>
               <div className="provider-container">

@@ -21,7 +21,7 @@ const Cryptocurrencies: React.FC<ISimplifedComp> = ({ simplified }) => {
     setCrypto(filterCryptos)
   }, [cryptosList, searchTerm])
 
-  if (isFetching) return <Loader />
+  if (isFetching || cryptos?.length < 1) return <Loader />
   return (
     <>
       {!simplified && <div className="search-crypto">
@@ -29,25 +29,28 @@ const Cryptocurrencies: React.FC<ISimplifedComp> = ({ simplified }) => {
       </div>
       }
       <Row gutter={[32, 32]} className='crypto-card-container'>
-        {cryptos?.map((crypto) => (
-          <Col xs={24} sm={12} lg={6} className='crypto-card' key={crypto.id}>
-            <Link to={`/crypto/${crypto.id}`}>
+        {cryptos?.map((crypto: any) => {
+          const price = crypto.price < 0.01 ? parseFloat(Number.parseFloat(crypto.price).toFixed(8)) : millify(crypto.price)
 
-              <Card title={`${crypto.rank}. ${crypto.name}`}
-                extra={<img className='crypto-image'
-                  src={crypto.iconUrl}
-                  alt="crypto-img" />}
-                hoverable
-              >
-                <p>Price: ${millify(crypto.price)}</p>
-                <p>Market Cap: ${millify(crypto.marketCap)}</p>
-                <p>Daily Change: ${millify(crypto.change)}%</p>
+          return (
+            <Col xs={24} sm={12} lg={6} className='crypto-card' key={crypto.id}>
+              <Link to={`/crypto/${crypto.id}`}>
+                <Card title={`${crypto.rank}. ${crypto.name}`}
+                  extra={<img className='crypto-image'
+                    src={crypto.iconUrl}
+                    alt="crypto-img" />}
+                  hoverable
+                >
+                  <p>Price: ${price}</p>
+                  <p>Market Cap: ${millify(crypto.marketCap)}</p>
+                  <p>Daily Change: ${millify(crypto.change)}%</p>
 
-              </Card>
-            </Link>
+                </Card>
+              </Link>
 
-          </Col>
-        ))}
+            </Col>
+          )
+        })}
       </Row>
     </>
   )
