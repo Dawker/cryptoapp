@@ -2,6 +2,7 @@
 import { Card, Row, Col, Input, Select, Typography, Avatar } from 'antd'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Cookies from 'universal-cookie';
 
 
@@ -9,6 +10,7 @@ import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
 import { ISimplifedComp } from '../typescript/components.types'
 import demoImage from '../assets/images/th.jpg'
 import { coinNames } from '../constants/constants';
+import Loader from './UI/Loader';
 
 
 const { Text, Title } = Typography
@@ -18,8 +20,9 @@ const cookies = new Cookies();
 const News: React.FC<ISimplifedComp> = ({ simplified }) => {
   const count = simplified ? 6 : 12
   const [newsCategory, setNewsCategory] = useState('Cryptocurrency');
-  const [news, setNews] = useState([])
-  const { data: cryptoNews } = useGetCryptoNewsQuery({ newsCategory, count })
+  const [news, setNews] = useState([]);
+
+  // const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({ newsCategory, count })
   useEffect(() => {
     const data = localStorage.getItem('newsCache')
     if (data !== null) {
@@ -28,11 +31,18 @@ const News: React.FC<ISimplifedComp> = ({ simplified }) => {
     }
   }, []);
 
-  useEffect(() => {
-    setNews(cryptoNews.value)
-  }, [newsCategory, cryptoNews])
+  function handleChange(value: string) {
+    if (!coinNames.includes(value)) return;
 
-  if (news.length < 1) return <p>loading...</p>
+    setNewsCategory(value)
+  }
+
+  // useEffect(() => {
+  //   return;
+  //   setNews(cryptoNews.value)
+  // }, [newsCategory, cryptoNews])
+
+  // if (isFetching) return <Loader />
   return (
     <Row gutter={[24, 24]}>
       {!simplified && (
@@ -42,11 +52,12 @@ const News: React.FC<ISimplifedComp> = ({ simplified }) => {
             className="select-news"
             placeholder="Select a Crypto"
             optionFilterProp="children"
-            onChange={(value: string) => setNewsCategory(value)}
-            filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            onChange={(value: string) => handleChange(value)}
+            // children in loc de value
+            filterOption={(input, option) => option?.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}
           >
             <Option value="Cryptocurency">Cryptocurrency</Option>
-            {coinNames.map((coinName) => <Option value={coinName}>{coinName}</Option>)}
+            {coinNames.map((coinName, i) => <Option key={i} value={coinName}>{coinName}</Option>)}
           </Select>
         </Col>
       )}

@@ -7,14 +7,15 @@ import { Link } from 'react-router-dom'
 import { useGetCryptosQuery } from '../services/cryptoApi'
 import { ICoinStats } from '../typescript/api.types'
 import { Cryptocurrencies, News } from '.'
+import Loader from './UI/Loader'
 
 const { Title } = Typography
 
 const HomePage = () => {
-  const { data, isLoading } = useGetCryptosQuery(10);
+  const { data, isFetching } = useGetCryptosQuery(10);
   const globalStats: ICoinStats = data?.data?.stats
 
-  if (isLoading) return <p>loading..</p>
+  if (isFetching) return <Loader />
 
   return (
     <>
