@@ -1,8 +1,8 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Layout } from 'antd';
 
-import { Exchanges, HomePage, News, Cryptocurrencies, CryptoDetails, Navbar, Footer } from './components';
+import { Exchanges, HomePage, News, Cryptocurrencies, CryptoDetails, Navbar, VirtualPortofolio } from './components';
 import './App.css';
 
 const App = () => (
@@ -29,12 +29,16 @@ const App = () => (
             <Route exact path="/news">
               <News />
             </Route>
+            {/* <Route exact path="/virtualportofolio">
+              <VirtualPortofolio />
+            </Route> */}
+            <Redirect to="/" />
           </Switch>
         </div>
       </Layout>
-      <div className="footer">
+      {/* <div className="footer">
         <Footer />
-      </div>
+      </div> */}
     </div>
   </div>
 );

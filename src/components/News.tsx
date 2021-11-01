@@ -3,7 +3,6 @@ import { Card, Row, Col, Input, Select, Typography, Avatar } from 'antd'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import Cookies from 'universal-cookie';
 
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi'
@@ -15,7 +14,6 @@ import Loader from './UI/Loader';
 
 const { Text, Title } = Typography
 const { Option } = Select
-const cookies = new Cookies();
 
 const News: React.FC<ISimplifedComp> = ({ simplified }) => {
   const count = simplified ? 6 : 12

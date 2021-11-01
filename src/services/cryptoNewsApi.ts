@@ -5,11 +5,11 @@ import { createRequest } from './utils';
 
 const cryptoNewsHeaders = {
   'x-bingapis-sdk': 'true',
-  'x-rapidapi-host': 'bing-news-search1.p.rapidapi.com',
-  'x-rapidapi-key': '4c679976e7msh68773ebf754bbd6p1f0e17jsndce11b7ffa1c'
+  'x-rapidapi-host': '',
+  'x-rapidapi-key': ''
 }
 
-const baseUrl = 'https://bing-news-search1.p.rapidapi.com'
+const baseUrl = ''
 
 export const cryptoNewsApi = createApi({
   reducerPath:'cryptoNewsApi',
