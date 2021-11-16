@@ -8,10 +8,10 @@ The app currently not working because of one of the apis but you can see some pi
 - Detailed info about each cryptocurrencies
 
 
-Homepage:
+News:
 ![plot](./preview.png)
 
-News:
+HomePage:
 ![plot](./preview2.png)
 
 
